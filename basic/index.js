@@ -4,6 +4,7 @@
 const express= require("express");
 const cors=require("cors");
 const dotenv = require("dotenv");
+const {r,f}=require("./dsa.js");
 
 dotenv.config()
 
@@ -38,6 +39,20 @@ app.get("/s",(req,res)=>{
 })
 
 
+app.get("/dsa", (req, res) => {
+    const n = parseInt(req.query.value);
+    const fact = f(n);
+    const v = parseInt(req.query.o);
+    const rev = r(v);
+    res.json({
+        query: "Use 'value' for factorial and 'o' for reverse",
+        factorial: `Factorial of ${n}: ${fact}`,
+        reverse: `Number: ${v}, Reverse: ${rev}`,
+        fact:fact,
+        rev:rev
+
+    });
+});
 
 app.listen(port,()=>{
     console.log(`\n\t Server is runnig on the port : ${port }`)
